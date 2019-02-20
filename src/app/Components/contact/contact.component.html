@@ -1,0 +1,28 @@
+
+<div class="container spacer">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><strong>Liste des contacts</strong></div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label>Mot clé</label>
+        <input type="text" [(ngModel)]="motcle" > 
+       <button class="btn btn-primary" (click)="recherche()">chercher</button>
+      </div>
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th><th>NOM</th><th>Prenom</th><th>Email</th><th>Tel</th><th>Photo</th>
+        </tr>
+
+        <tr *ngFor="let c of listec">
+          <td>{{c.id}}</td>
+          <td>{{c.nom}}</td>
+          <td>{{c.prenom}}</td>
+          <td>{{c.email}}</td>
+          <td>{{c.tel}}</td>
+          <td>{{c.photo}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>
