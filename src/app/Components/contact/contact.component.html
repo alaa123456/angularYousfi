@@ -10,18 +10,26 @@
       </div>
       <table class="table table-striped">
         <tr>
-          <th>ID</th><th>NOM</th><th>Prenom</th><th>Email</th><th>Tel</th><th>Photo</th>
+          <th>ID</th><th>NOM</th><th>Prenom</th><th>Date-Naissance</th><th>Email</th><th>Tel</th><th>Photo</th>
         </tr>
 
-        <tr *ngFor="let c of listec">
+        <tr *ngFor="let c of pagecont?.content">
           <td>{{c.id}}</td>
           <td>{{c.nom}}</td>
           <td>{{c.prenom}}</td>
+          <td>{{c.datenaissance}}</td>
           <td>{{c.email}}</td>
           <td>{{c.tel}}</td>
           <td>{{c.photo}}</td>
         </tr>
       </table>
+      <div class="container">
+        <ul class="nav nav-pills">
+          <li [ngClass]="{'active':i==currentpage}" *ngFor="let p of pages; let i=index">
+            <a class="clickable" (click)="gotopage(i)">{{i}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 

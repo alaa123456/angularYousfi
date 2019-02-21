@@ -10,28 +10,37 @@ import { Contct } from '../Model/Contct';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  pagecont:any;
 Liste2:Contct [];
 
 listec: Contct [];
 motcle:string="";
-page:number=1;
-size:number=5;
+currentpage:number=2;
+size:number=3;
+pages:Array<number>;
   constructor(public contservice:Contactservice) { }
 
   ngOnInit() {
    this.recherche();
-    this.doaffich();
+   // this.doaffich();
   }
   dosearch(){
-    this.contservice.getcontacts(this.motcle,this.size,this.page)
-    .subscribe(data=>{this.Liste2=data},err=>{console.log(err)});
+    this.contservice.getcontacts(this.motcle,this.size,this.currentpage)
+    .subscribe(data=>{
+      this.pagecont=data;
+      this.pages=new Array(data.totalPages)
+    },err=>{console.log(err)});
   }
    recherche(){
 this.dosearch();
   }
-  doaffich(){
-    this.contservice.allcontact().subscribe(data=>{this.listec=data},err=>{console.log(err)});
+  gotopage(i:number){
+    this.currentpage=i;
+    this.dosearch();
   }
+ // doaffich(){
+  //  this.contservice.allcontact().subscribe(data=>{this.listec=data},err=>{console.log(err)});
+ // }
   /*onKey(event: any){
     this.dosearch();
   }*/
